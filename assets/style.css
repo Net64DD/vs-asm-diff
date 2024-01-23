@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inconsolata:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inconsolata:wght@500&display=swap');
+
+html {
+    display: flex;
+    width: 100%;
+    background: rgb(18, 18, 18) !important;
+}
+
+table.diff {
+    border: none;
+    font-family: 'Inconsolata', monospace;
+    font-weight: 400;
+    white-space: pre;
+    width: 100%;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-shrink: inherit;
+    width: 0;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+tr {
+    width: 30px !important;
+}
+
+tr.data-ref {
+    background-color: rgba(255, 255, 255, 0.166);
+}
+
+td {
+    max-width: 400px;
+    font-size: 14px !important;
+}
+
+.selected {
+    background-color: rgba(255, 255, 255, 0.166);
+}
+.immediate { color: #6d6dff; }
+.stack { color: #abc501; }
+.register { color: #aa8b00; }
+
+.delay-slot {
+    font-weight: bold;
+    color: #969896;
+}
+
+.diff-change { color: #6d6dff; }
+.diff-add { color: #45bd00; }
+.diff-remove { color: #c82829; }
+.source-filename { font-weight: bold; }
+
+.source-function {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.rotation-0 { color: magenta; }
+.rotation-1 { color: cyan; }
+.rotation-2 { color: rgb(0, 212, 0); }
+.rotation-3 { color: red; }
+.rotation-4 { color: rgb(103, 106, 255); }
+.rotation-5 { color: lightpink; }
+.rotation-6 { color: lightcyan; }
+.rotation-7 { color: lightgreen; }
+.rotation-8 { color: grey; }

@@ -1,0 +1,42 @@
+html {
+    background: black !important;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+canvas {
+    background: black;
+    border: 1px solid white;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    position: absolute;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.container img {
+    margin: 30px 0px;
+}
+
+span {
+    margin: 0 auto;
+    font-size: 24px;
+}
+
+#loadingText {
+    font-size: 18px;
+}

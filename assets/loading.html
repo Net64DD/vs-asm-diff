@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {cspSource} https:; script-src {cspSource}; style-src {cspSource};"/>
+        <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+        <link rel="stylesheet" href='{assets:loading.css}'>
+    </head>
+    <body>
+        <div class="container">
+            <span>It's dangerous to go alone!</span>
+            <span>Take this.</span>
+            <img src='{assets:char.png}' alt="Loading">
+            <span id="loadingText">Building...</span>
+        </div>
+        <canvas id="starsCanvas"></canvas>
+        <script src='{assets:stars.js}'></script>
+    </body>
+</html>
