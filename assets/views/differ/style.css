@@ -22,6 +22,32 @@ table.diff {
     font-size: 14px;
 }
 
+.error-app {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    width: 0;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.error-app .error {
+    width: 500px;
+    color: #e6e6e6;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.error-app p {
+    width: 500px;
+    color: #e6e6e6;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
 tr {
     width: 30px !important;
 }

@@ -46,15 +46,25 @@ class ASMDiffWrapper {
         const command = `python3 -u ./${path.join(config.get('path')!, 'diff.py')} -mow3 --format html ${func}`;
         const child = exec(command, { cwd: this._context.getCurrentDirectory() });
         let buffer = '';
+        let failed = false;
 
         return new Promise<string>((resolve, reject) => {
             child.stdout?.on('data', (data) => {
                 buffer += data.toString();
-                console.log(data.toString());
+                failed = true;
+            });
+
+            child.stderr?.on('data', data => {
+                buffer += data.toString();
             });
 
             child.on('close', async () => {
                 const raw = buffer.toLowerCase();
+
+                if(failed){
+                    reject(new DiffGenerationException(buffer.replace(/\x1b[^m]*m/g, '')));
+                }
+
                 if(raw.includes('No such file or directory')){
                     reject(new DiffGenerationException('No such file or directory'));
                 }
@@ -73,9 +83,6 @@ class ASMDiffWrapper {
 
                 const html = buffer.slice(buffer.indexOf("<table class='diff'>"));
                 resolve(html);
-            });
-            child.stderr?.on('data', data => {
-                reject(new DiffGenerationException(data.toString()));
             });
         });
     }
@@ -141,7 +148,9 @@ class ASMDiffWrapper {
             }
         } catch (e) {
             view.deployHTML('views/differ/differ.html', {
-                'buffer': e instanceof DiffGenerationException ? e.message.replace(/\x1b[^m]*m/g, '') : 'An unknown error occurred, try to validate your code and rebuild'
+                'buffer': '<div class="error-app"><p>An error occurred during compilation °՞(ᗒᗣᗕ)՞°</p>' + (e instanceof DiffGenerationException ? e.message.split('\n').filter(m=> m.trim().length != 0).map(m => {
+                    return `<span class="error">${m.trim().replace('\n', '')}</span>`;
+                }).join('\n') : 'An unknown error occurred, try to validate your code and rebuild') + '</div>'
             });
         }
     }

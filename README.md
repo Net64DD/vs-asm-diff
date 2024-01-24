@@ -28,4 +28,5 @@ Feel free to open an issue or a PR if you find any bug or have any suggestion.
 ## Credits
 
 - [asm-differ](https://github.com/simonlindholm/asm-differ)
+- [MegaMech](https://github.com/MegaMech/) for the function detection impl!
 - [Lywx](https://github.com/KiritoDv) Made with ❤️
