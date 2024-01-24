@@ -3,15 +3,31 @@
   "displayName": "asm-diff",
   "description": "",
   "version": "0.0.1",
+  "publisher": "Lywx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Net64DD/vs-asm-diff.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
+  "extensionKind": [
+		"ui",
+		"workspace"
+	],
   "categories": [
     "Other"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [{
+        "type": "webview",
+        "id": "asm-diff.webview",
+        "name": "vs-asm-diff"
+      }]
+    },
     "configuration": {
       "title": "asm-diff",
       "properties": {
@@ -23,12 +39,12 @@
     },
     "commands": [
       {
-        "command": "asm-diff.diffFunc",
-        "title": "Diff: Compare selected function"
+        "command": "asm-diff.showDiffFunc",
+        "title": "ASMDiff: Compare selected function"
       },
       {
         "command": "asm-diff.setDiffTool",
-        "title": "Diff: Set asm-diff path"
+        "title": "ASMDiff: Set asm-diff path"
       }
     ]
   },

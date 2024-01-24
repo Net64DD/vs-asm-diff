@@ -19,6 +19,7 @@ function scanComponents(){
 }
 
 function selectLine(line){
+    console.log(line)
     for(component of components){
         if(component.line != line){
             component.element.classList.remove('selected')
