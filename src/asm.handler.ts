@@ -3,6 +3,14 @@ import path from 'path';
 import ASMDiffExtension from './extension';
 import { exec } from 'child_process';
 
+const faces = [
+    '°՞(ᗒᗣᗕ)՞°',
+    '(っ◞‸◟ c)',
+    '｡°(°.◜ᯅ◝°)°｡',
+    '(◞‸◟；)',
+    'ヽ(´□｀。)ﾉ'
+]
+
 type ASMContext = {
     function: string;
     file: string;
@@ -60,8 +68,9 @@ class ASMDiffWrapper {
 
             child.on('close', async () => {
                 const raw = buffer.toLowerCase();
+                const fakeDetection = raw.includes("<table class='diff'>")
 
-                if(failed){
+                if(failed && !fakeDetection){
                     reject(new DiffGenerationException(buffer.replace(/\x1b[^m]*m/g, '')));
                 }
 
@@ -77,7 +86,7 @@ class ASMDiffWrapper {
                     reject(new DiffGenerationException('ASM-Diff encountered an error'));
                 }
 
-                if(!raw.includes("<table class='diff'>")){
+                if(!fakeDetection){
                     reject(new DiffGenerationException('No diff generated, compilation may have failed!'));
                 }
 
@@ -147,8 +156,9 @@ class ASMDiffWrapper {
                 };
             }
         } catch (e) {
+            const face = faces[Math.floor(Math.random() * faces.length)];
             view.deployHTML('views/differ/differ.html', {
-                'buffer': '<div class="error-app"><p>An error occurred during compilation °՞(ᗒᗣᗕ)՞°</p>' + (e instanceof DiffGenerationException ? e.message.split('\n').filter(m=> m.trim().length != 0).map(m => {
+                'buffer': `<div class="error-app"><p>An error occurred during compilation ${face}</p>` + (e instanceof DiffGenerationException ? e.message.split('\n').filter(m=> m.trim().length != 0).map(m => {
                     return `<span class="error">${m.trim().replace('\n', '')}</span>`;
                 }).join('\n') : 'An unknown error occurred, try to validate your code and rebuild') + '</div>'
             });

@@ -2,7 +2,7 @@
   "name": "asm-diff",
   "displayName": "VSCode asm-diff!",
   "description": "Compare asm directly in VSCode! (Requires asm-diff)",
-  "version": "0.0.2",
+  "version": "0.1.2",
   "publisher": "Lywx",
   "repository": {
     "type": "git",

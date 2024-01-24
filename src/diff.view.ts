@@ -76,7 +76,6 @@ class ASMDiffWebview {
                 html = html.replace(new RegExp(`{${key}}`, 'g'), replacements[key]);
             }
         }
-        console.log(html);
         this.panel.webview.html = this.importAssets(html, path.dirname(file));
     }
 
