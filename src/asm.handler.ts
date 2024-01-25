@@ -39,9 +39,9 @@ class ASMDiffWrapper {
     private async validateASMPath(){
         const config = this._context.getConfig();
 
-        if (!config.has('path')) {
+        if (!config.has('path:asm')) {
             vscode.window.showErrorMessage('No path set for asm-diff, please set one');
-            await this._context.setDiffASMPath();
+            await this._context.setCFGPath('path:asm', 'diff.py');
             return false;
         }
 
@@ -51,7 +51,7 @@ class ASMDiffWrapper {
     private getFunctionDiff(func: string): Promise<string> {
         const config = this._context.getConfig();
 
-        const command = `python3 -u ./${path.join(config.get('path')!, 'diff.py')} -mow3 --format html ${func}`;
+        const command = `python3 -u ./${path.join(config.get('path:asm')!, 'diff.py')} -mow3 --format html ${func}`;
         const child = exec(command, { cwd: this._context.getCurrentDirectory() });
         let buffer = '';
         let failed = false;
@@ -71,23 +71,23 @@ class ASMDiffWrapper {
                 const fakeDetection = raw.includes("<table class='diff'>")
 
                 if(failed && !fakeDetection){
-                    reject(new DiffGenerationException(buffer.replace(/\x1b[^m]*m/g, '')));
+                    return reject(new DiffGenerationException(buffer.replace(/\x1b[^m]*m/g, '')));
                 }
 
                 if(raw.includes('No such file or directory')){
-                    reject(new DiffGenerationException('No such file or directory'));
+                    return reject(new DiffGenerationException('No such file or directory'));
                 }
 
                 if(raw.includes('Not able to find')){
-                    reject(new DiffGenerationException('No such function found'));
+                    return reject(new DiffGenerationException('No such function found'));
                 }
 
                 if(raw.includes('error')){
-                    reject(new DiffGenerationException('ASM-Diff encountered an error'));
+                    return reject(new DiffGenerationException('ASM-Diff encountered an error'));
                 }
 
                 if(!fakeDetection){
-                    reject(new DiffGenerationException('No diff generated, compilation may have failed!'));
+                    return reject(new DiffGenerationException('No diff generated, compilation may have failed!'));
                 }
 
                 const html = buffer.slice(buffer.indexOf("<table class='diff'>"));

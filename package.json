@@ -31,7 +31,11 @@
     "configuration": {
       "title": "asm-diff",
       "properties": {
-        "asm-diff.path": {
+        "path:asm": {
+          "type": ["string", "null"],
+          "default": null
+        },
+        "path:m2c": {
           "type": ["string", "null"],
           "default": null
         }
@@ -45,6 +49,14 @@
       {
         "command": "asm-diff.setDiffTool",
         "title": "ASMDiff: Set asm-diff path"
+      },
+      {
+        "command": "asm-diff.genM2CFunc",
+        "title": "ASMDiff [Extra]: Generate M2C function"
+      },
+      {
+        "command": "asm-diff.setM2CTool",
+        "title": "ASMDiff [Extra]: Set M2C path"
       }
     ]
   },
