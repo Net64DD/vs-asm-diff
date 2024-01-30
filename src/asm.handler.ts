@@ -39,9 +39,9 @@ class ASMDiffWrapper {
     private async validateASMPath(){
         const config = this._context.getConfig();
 
-        if (!config.has('path:asm')) {
+        if (!config.has('path.asm')) {
             vscode.window.showErrorMessage('No path set for asm-diff, please set one');
-            await this._context.setCFGPath('path:asm', 'diff.py');
+            await this._context.setCFGPath('path.asm', 'diff.py');
             return false;
         }
 
@@ -51,7 +51,7 @@ class ASMDiffWrapper {
     private getFunctionDiff(func: string): Promise<string> {
         const config = this._context.getConfig();
 
-        const command = `python3 -u ./${path.join(config.get('path:asm')!, 'diff.py')} -mow3 --format html ${func}`;
+        const command = `python3 -u ./${path.join(config.get('path.asm')!, 'diff.py')} -mow3 --format html ${func}`;
         const child = exec(command, { cwd: this._context.getCurrentDirectory() });
         let buffer = '';
         let failed = false;
@@ -128,7 +128,7 @@ class ASMDiffWrapper {
         }
 
         const file = editor.document.fileName;
-        const func = this.current ? this.current.function : await this.getCurrentFunction();
+        const func = await this.getCurrentFunction();
 
         if(!func){
             vscode.window.showErrorMessage('No function found or selected');

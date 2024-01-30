@@ -1,8 +1,8 @@
 {
   "name": "asm-diff",
-  "displayName": "VSCode asm-diff!",
+  "displayName": "vs-asm-diff!",
   "description": "Compare asm directly in VSCode! (Requires asm-diff)",
-  "version": "0.2.2",
+  "version": "0.3.2",
   "publisher": "Lywx",
   "repository": {
     "type": "git",
@@ -31,13 +31,11 @@
     "configuration": {
       "title": "asm-diff",
       "properties": {
-        "path:asm": {
-          "type": ["string", "null"],
-          "default": null
+        "path.asm": {
+          "type": "string"
         },
-        "path:m2c": {
-          "type": ["string", "null"],
-          "default": null
+        "path.m2c": {
+          "type": "string"
         }
       }
     },

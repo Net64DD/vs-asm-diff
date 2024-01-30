@@ -23,8 +23,8 @@ export default class ASMDiffExtension {
 	public async onInit(){
 		this.asm.init();
 		this._context.subscriptions.push(
-			vscode.commands.registerCommand('asm-diff.setDiffTool', this.setCFGPath.bind(this, 'path:asm', 'diff.py')),
-			vscode.commands.registerCommand('asm-diff.setM2CTool', this.setCFGPath.bind(this, 'path:m2c', 'm2c.py', false)),
+			vscode.commands.registerCommand('asm-diff.setDiffTool', this.setCFGPath.bind(this, 'path.asm', 'diff.py')),
+			vscode.commands.registerCommand('asm-diff.setM2CTool', this.setCFGPath.bind(this, 'path.m2c', 'm2c.py', false)),
 			vscode.commands.registerCommand('asm-diff.showDiffFunc', this.asm.executeASMDiff.bind(this.asm)),
 			vscode.commands.registerCommand('asm-diff.genM2CFunc', this.m2c.executeM2C.bind(this.m2c)),
 		);

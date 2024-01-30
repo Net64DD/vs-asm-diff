@@ -4,11 +4,6 @@ Nice differ for assembly code. Currently supports MIPS, PPC, AArch64, ARM32, SH2
 
 ![](./assets/screenshot.png)
 
-## Dependencies
-
-- Python >= 3.6
-- `python3 -m pip install --user colorama watchdog levenshtein cxxfilt` (also `dataclasses` if on 3.6)
-
 ## Usage
 
 * Inside a file with a function you want to diff, highlight the function name and launch the command `> ASM Diff: Diff function`
@@ -20,6 +15,10 @@ Nice differ for assembly code. Currently supports MIPS, PPC, AArch64, ARM32, SH2
 - [ ] Add decomp.me support to create scratch files
 - [ ] Fix the responsiveness of the diff view
 - [ ] MinGW support
+
+## Future Features
+- [x] Integrate M2C
+- [ ] Add option to auto sort externs
 
 ## Contributing
 

@@ -15,9 +15,9 @@ class M2CGenWrapper {
     private async validateM2CPath(){
         const config = this._context.getConfig();
 
-        if (!config.has('path:m2c')) {
+        if (!config.has('path.m2c')) {
             vscode.window.showErrorMessage('No path set for asm-diff, please set one');
-            await this._context.setCFGPath('path:m2c', 'm2c.py', false);
+            await this._context.setCFGPath('path.m2c', 'm2c.py', false);
             return false;
         }
 
@@ -27,7 +27,7 @@ class M2CGenWrapper {
     private genCodeFromASM(func: string, ctx: string): Promise<string> {
         const config = this._context.getConfig();
 
-        const command = `python3 -u ./${path.join(config.get('path:m2c')!, 'm2c.py')} --context=${ctx} ${path.join(this._context.getCurrentDirectory()!, func)}`;
+        const command = `python3 -u ./${path.join(config.get('path.m2c')!, 'm2c.py')} --context=${ctx} ${path.join(this._context.getCurrentDirectory()!, func)}`;
         const child = exec(command, { cwd: this._context.getCurrentDirectory() });
         let buffer = '';
         let failed = false;
